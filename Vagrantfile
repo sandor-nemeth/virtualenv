@@ -6,7 +6,8 @@ current_dir = File.expand_path File.dirname(__FILE__)
 
 # Box configuration
 default_box      = "ubuntu/wily64"
-box              = ENV['BOX']  || default_box
+box              = ENV['VAGRANT_BOX']  || default_box
+memory_size      = ENV['VAGRANT_MEMORY'] || 1024
 
 # Proxy environment
 http_proxy       = ENV['VAGRANT_HTTP_PROXY']      || ""
@@ -34,7 +35,7 @@ Vagrant.configure(2) do |config|
     config.apt_proxy.https = "#{apt_proxy_https}"
   end
 
-  config.vm.define "vm" do |d|
+  config.vm.define "dev" do |d|
     d.vm.box = "#{box}"
     d.vm.hostname = "dev"
     d.vm.network "private_network", ip: "10.10.0.10"
@@ -43,7 +44,7 @@ Vagrant.configure(2) do |config|
       s.env = { VAGRANT_BOX: "#{box}" }
     end
     d.vm.provider "virtualbox" do |v|
-      v.memory = 1024
+      v.memory = "#{memory_size}"
     end
   end
 
