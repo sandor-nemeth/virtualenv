@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
     config.proxy.http      = "#{http_proxy}"
     config.proxy.https     = "#{https_proxy}"
     config.proxy.no_proxy  = "#{no_proxy}"
-    config.apt_proxy.http  = "#{apt_proxy_h8ttp}"
+    config.apt_proxy.http  = "#{apt_proxy_http}"
     config.apt_proxy.https = "#{apt_proxy_https}"
   end
 
